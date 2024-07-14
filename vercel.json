@@ -5,10 +5,6 @@
     {
       "src": "/(.*)",
       "dest": "/server.js"
-    },
-    {
-      "src": "/complaints",
-      "dest": "/server.js"
     }
   ]
 }
