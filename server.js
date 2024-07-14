@@ -1,0 +1,42 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const path = require('path');
+
+const app = express();
+const PORT = process.env.PORT || 3030;
+
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());
+
+// Serve static files from the public
+app.use(express.static('public'));
+
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost/complaints', { useNewUrlParser: true, useUnifiedTopology: true });
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+    console.log('Connected to MongoDB');
+});
+
+// Routes
+const complaintsRouter = require('./routes/complaints');
+app.use('/api/complaints', complaintsRouter);
+
+// Serve complaints.html
+app.get('/complaints', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'complaints.html'));
+});
+
+// Route to serve complaints_view.html
+app.get('/complaints/view', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'complaints_view.html'));
+});
+
+// Start the server
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});

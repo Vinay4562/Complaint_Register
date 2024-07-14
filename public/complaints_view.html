@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Complaints</title>
+    <style>
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styles */
+.header {
+    background-color: white;
+    color: red;
+    text-decoration: underline 2px;
+    padding: 40px 0;
+    text-align: center;      
+    margin-bottom: 0;  
+}
+.header img {
+    position: absolute;
+    top: 15px;
+    left: 25px;
+    width: 140px;
+    height: 120px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 35px;   
+}
+
+/* Updated navbar styles */
+.navbar {
+    background-color: white;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-weight: bold;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 0;
+    padding-top: 5px;
+}
+
+.navbar a {
+    color: #333;
+    text-align: center;
+    padding: 10px 15px;
+    text-decoration: none;
+    margin-left: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.navbar a:hover {
+    background: #ffd000;
+    color: #fff;
+    border-radius: 40px;
+    font-weight: bold;
+}
+
+.navbar a:last-child {
+    margin-right: 0; /* Remove margin from the last item */
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding: 40px;
+    background: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin-top: 1%;
+    border-radius: 10px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow: hidden; /* Ensure table header effect is contained */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+thead th {
+    background-color: #007bff; /* Blue header background */
+    color: white;
+    position: relative;
+    transition: background-color 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+thead th:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+thead th::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s ease-in-out;
+}
+
+thead th:hover::after {
+    width: 100%;
+}
+
+.resolved {
+    background-color: #d4edda; /* Light green background */
+    text-decoration: line-through;
+    color: #999;
+}
+
+.unresolved {
+    background-color: #f8d7da; /* Light red background */
+}
+
+.fadeInRow {
+    animation: fadeInRow 0.5s ease-in-out;
+}
+
+@keyframes fadeInRow {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#searchBar {
+            width: 98%;
+            padding: 10px;
+            margin-bottom: 5px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .sortable:after {
+            content: ' \25B2\25BC'; /* Unicode arrows for visual indication */
+            font-size: 0.8em;
+            padding-left: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <img src="logo_new.png" alt="Logo" class="logo" width="180px" height="160px">
+        <h1>𝐓𝐑𝐀𝐍𝐒𝐌𝐈𝐒𝐒𝐈𝐎𝐍 𝐂𝐎𝐑𝐏𝐎𝐑𝐀𝐓𝐈𝐎𝐍 𝐎𝐅 𝐓𝐄𝐋𝐀𝐍𝐆𝐀𝐍𝐀 𝐋𝐈𝐌𝐈𝐓𝐄𝐃</h1>
+    </div>
+
+    <!-- Navigation bar -->
+    <div class="navbar">
+        <a href="http://localhost:3000/index.html">Home</a>
+    </div>
+
+    <div class="container">
+        <h1>All Complaints</h1>
+        <input type="text" id="searchBar" placeholder="Search complaints...">
+        <table id="allComplaintsTable">
+            <thead>
+                <tr>
+                    <th class="sortable" data-sort="index">#</th>
+                    <th class="sortable" data-sort="date">Date</th>
+                    <th class="sortable" data-sort="complaint">Complaint</th>
+                    <th class="sortable" data-sort="attemptedBy">Attempted By</th>
+                    <th class="sortable" data-sort="attemptedDate">Attempted Date</th>
+                    <th class="sortable" data-sort="remarks">Remarks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Complaints will be added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetchAndDisplayComplaints();
+
+        const searchBar = document.getElementById('searchBar');
+        searchBar.addEventListener('input', filterComplaints);
+
+        const headers = document.querySelectorAll('.sortable');
+        headers.forEach(header => {
+            header.addEventListener('click', function() {
+                sortTable(header.getAttribute('data-sort'));
+            });
+        });
+    });
+
+    async function fetchAndDisplayComplaints() {
+        try {
+            const response = await fetch('/api/complaints');
+            const complaints = await response.json();
+            
+            const tableBody = document.querySelector('#allComplaintsTable tbody');
+            complaints.forEach((complaint, index) => {
+                const row = document.createElement('tr');
+                const isResolved = complaint.attemptedBy && complaint.attemptedDate && complaint.remarks;
+                const statusClass = isResolved ? 'resolved' : 'unresolved';
+                
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${complaint.date.split('T')[0]}</td>
+                    <td>${complaint.complaint}</td>
+                    <td>${complaint.attemptedBy || ''}</td>
+                    <td>${complaint.attemptedDate ? complaint.attemptedDate.split('T')[0] : ''}</td>
+                    <td>${complaint.remarks || ''}</td>
+                `;
+                row.classList.add(statusClass);
+                tableBody.appendChild(row);
+                animateRow(row);
+            });
+        } catch (error) {
+            console.error('Error fetching complaints:', error);
+        }
+    }
+
+    function animateRow(row) {
+        row.classList.add('fadeInRow');
+    }
+
+    function filterComplaints() {
+        const query = document.getElementById('searchBar').value.toLowerCase();
+        const rows = document.querySelectorAll('#allComplaintsTable tbody tr');
+
+        rows.forEach(row => {
+            const cells = row.querySelectorAll('td');
+            const date = cells[1].textContent.toLowerCase();
+            const complaint = cells[2].textContent.toLowerCase();
+            const attemptedBy = cells[3].textContent.toLowerCase();
+            const attemptedDate = cells[4].textContent.toLowerCase();
+            const remarks = cells[5].textContent.toLowerCase();
+
+            if (date.includes(query) || complaint.includes(query) || attemptedBy.includes(query) || attemptedDate.includes(query) || remarks.includes(query)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+
+    function sortTable(column) {
+        const table = document.getElementById('allComplaintsTable');
+        const tbody = table.querySelector('tbody');
+        const rows = Array.from(tbody.rows);
+        const index = {
+            'index': 0,
+            'date': 1,
+            'complaint': 2,
+            'attemptedBy': 3,
+            'attemptedDate': 4,
+            'remarks': 5
+        }[column];
+
+        let ascending = true;
+
+        if (table.dataset.sortColumn === column) {
+            ascending = table.dataset.sortOrder !== 'asc';
+            table.dataset.sortOrder = ascending ? 'asc' : 'desc';
+        } else {
+            table.dataset.sortColumn = column;
+            table.dataset.sortOrder = 'asc';
+        }
+
+        rows.sort((a, b) => {
+            const cellA = a.cells[index].textContent.trim().toLowerCase();
+            const cellB = b.cells[index].textContent.trim().toLowerCase();
+
+            if (cellA < cellB) {
+                return ascending ? -1 : 1;
+            }
+            if (cellA > cellB) {
+                return ascending ? 1 : -1;
+            }
+            return 0;
+        });
+
+        tbody.innerHTML = '';
+        rows.forEach(row => tbody.appendChild(row));
+        updateSerialNumbers();
+    }
+
+    function updateSerialNumbers() {
+        const rows = document.querySelectorAll('#allComplaintsTable tbody tr');
+        rows.forEach((row, index) => {
+            row.cells[0].textContent = index + 1;
+        });
+    }
+    </script>
+</body>
+</html>

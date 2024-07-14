@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+
+.header {
+            background-color: white;
+            color: red;
+            text-decoration: underline 2px;
+            padding: 40px 0;
+            text-align: center;
+            margin-bottom: 0;
+            width: 100%;
+            box-sizing: border-box;
+            position: absolute;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header img {
+            position: absolute;
+            top: 15px;
+            left: 25px;
+            width: 120px;
+            height: 100px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .navbar {
+            background-color: white;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-top: 117px;
+            padding-top: 5px;
+            width: 100%;
+            box-sizing: border-box;
+            position: absolute;
+            top: 0px;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: #6dc453;
+            text-align: center;
+            padding: 10px 15px;
+            text-decoration: none;
+            margin-left: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar a:hover {
+            background: #ffd000;
+            color: #fff;
+            border-radius: 40px;
+            font-weight: bold;
+        }
+
+        .navbar a:last-child {
+            margin-right: 10px;
+        }
+
+        .back-btn {
+            background-color: #333;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .back-btn:hover {
+            background-color: #555;
+        }
+
+        .logout-btn {
+            background-color: #f00;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .logout-btn:hover {
+            background-color: #f22;
+        }
+
+/* Hover effect */
+tbody tr:hover {
+    background-color: #f0f0f0;
+    transition: background-color 0.3s ease;
+}
+/* Animation on row entry */
+@keyframes fadeInRow {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fadeInRow {
+    animation: fadeInRow 0.5s ease-in-out;
+}
+/* Animation on row entry */
+@keyframes fadeInRow {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fadeInRow {
+    animation: fadeInRow 0.5s ease-in-out;
+}
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+td {
+    background-color: #fff;
+}
+
+.editing input, .editing textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.strike-through {
+    text-decoration: line-through;
+    color: #999;
+}
+
+/* Alternating row colors for better readability */
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+/* Button styles */
+/* Button styles */
+button {
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.edit, button.delete {
+    margin-right: 8px; /* Add space between Edit and Delete buttons */
+}
+
+button:hover {
+    background-color: #4cae4c;
+}
+
+/* Different styles for delete button */
+button.delete {
+    background-color: #d9534f;
+}
+
+button.delete:hover {
+    background-color: #c9302c;
+}
+
+/* Container styling */
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 10px;
+            background: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin-top: 14%;
+            border-radius: 10px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin: 10px 0 5px;
+        }
+
+        input, textarea {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <img src="logo_new.png" alt="Logo" class="logo" width="180px" height="160px">
+        <h1>𝐓𝐑𝐀𝐍𝐒𝐌𝐈𝐒𝐒𝐈𝐎𝐍 𝐂𝐎𝐑𝐏𝐎𝐑𝐀𝐓𝐈𝐎𝐍 𝐎𝐅 𝐓𝐄𝐋𝐀𝐍𝐆𝐀𝐍𝐀 𝐋𝐈𝐌𝐈𝐓𝐄𝐃</h1>
+    </div>
+
+    <!-- Navigation bar -->
+    <div class="navbar">
+        <a href="http://localhost:3000/services.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+        <a href="#" class="logout-btn" onclick="logout(); return false;"><i class="fas fa-sign-out-alt"></i></a>
+    </div>
+
+    <div class="container">
+        <h1>Complaint Register</h1>
+        <form id="complaintForm">
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+            
+            <label for="complaint">Complaint:</label>
+            <textarea id="complaint" name="complaint" required></textarea>
+            
+            <button type="submit">Submit</button>
+        </form>
+        <h2>Complaints</h2>
+        <table id="complaintsTable">
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Date</th>
+                    <th>Complaint</th>
+                    <th>Attempted By</th>
+                    <th>Attempted Date</th>
+                    <th>Remarks</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Complaints will be added here -->
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="container">
+        <h2>Resolved Complaints</h2>
+        <table id="resolvedComplaintsTable">
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Date</th>
+                    <th>Complaint</th>
+                    <th>Attempted By</th>
+                    <th>Attempted Date</th>
+                    <th>Remarks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Resolved complaints will be added here -->
+            </tbody>
+        </table>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchComplaints();
+        });
+        
+        async function fetchComplaints() {
+            try {
+                const response = await fetch('/api/complaints');
+                const complaints = await response.json();
+                complaints.forEach(complaint => {
+                    if (complaint.attemptedBy && complaint.attemptedDate && complaint.remarks) {
+                        addResolvedComplaintToTable(complaint);
+                    } else {
+                        addComplaintToTable(complaint);
+                    }
+                });
+            } catch (error) {
+                console.error('Error fetching complaints:', error);
+                // Display an error message on the webpage or handle it appropriately
+            }
+        }
+        
+        async function addComplaintToTable(complaint) {
+            const tableBody = document.querySelector('#complaintsTable tbody');
+            const row = document.createElement('tr');
+        
+            row.innerHTML = `
+                <td></td>
+                <td>${complaint.date.split('T')[0]}</td>
+                <td>${complaint.complaint}</td>
+                <td>${complaint.attemptedBy || ''}</td>
+                <td>${complaint.attemptedDate ? complaint.attemptedDate.split('T')[0] : ''}</td>
+                <td>${complaint.remarks || ''}</td>
+                <td class="actions">
+                    <button class="edit">Edit</button>
+                    <button class="delete">Delete</button>
+                </td>
+            `;
+        
+            tableBody.appendChild(row);
+            updateSerialNumbers('#complaintsTable');
+        
+            row.classList.add('fadeInRow');
+        
+            row.querySelector('.edit').addEventListener('click', () => editComplaint(row, complaint._id));
+            row.querySelector('.delete').addEventListener('click', () => deleteComplaint(row, complaint._id));
+        }
+        
+        async function addResolvedComplaintToTable(complaint) {
+            const tableBody = document.querySelector('#resolvedComplaintsTable tbody');
+            const row = document.createElement('tr');
+        
+            row.innerHTML = `
+                <td></td>
+                <td>${complaint.date.split('T')[0]}</td>
+                <td>${complaint.complaint}</td>
+                <td>${complaint.attemptedBy || ''}</td>
+                <td>${complaint.attemptedDate ? complaint.attemptedDate.split('T')[0] : ''}</td>
+                <td>${complaint.remarks || ''}</td>
+            `;
+        
+            tableBody.appendChild(row);
+            updateSerialNumbers('#resolvedComplaintsTable');
+        
+            row.classList.add('strike-through');
+        }
+        
+        function updateSerialNumbers(tableId) {
+            const rows = document.querySelectorAll(`${tableId} tbody tr`);
+            rows.forEach((row, index) => {
+                row.querySelector('td').textContent = index + 1;
+            });
+        }
+        
+        function editComplaint(row, id) {
+            const cells = row.querySelectorAll('td');
+            const date = cells[1].textContent;
+            const complaint = cells[2].textContent;
+            const attemptedBy = cells[3].textContent;
+            const attemptedDate = cells[4].textContent;
+            const remarks = cells[5].textContent;
+        
+            cells[1].innerHTML = `<input type="date" value="${date}">`;
+            cells[2].innerHTML = `<textarea>${complaint}</textarea>`;
+            cells[3].innerHTML = `<input type="text" value="${attemptedBy}" placeholder="Attempted By">`;
+            cells[4].innerHTML = `<input type="date" value="${attemptedDate}">`;
+            cells[5].innerHTML = `<textarea>${remarks}</textarea>`;
+            cells[6].innerHTML = `<button class="save">Save</button> <button class="cancel">Cancel</button>`;
+        
+            row.classList.add('editing');
+        
+            row.querySelector('.save').addEventListener('click', () => saveComplaint(row, id));
+            row.querySelector('.cancel').addEventListener('click', () => cancelEdit(row, date, complaint, attemptedBy, attemptedDate, remarks));
+        }
+        
+        async function saveComplaint(row, id) {
+            const inputs = row.querySelectorAll('input, textarea');
+            const date = inputs[0].value;
+            const complaint = inputs[1].value;
+            const attemptedBy = inputs[2].value;
+            const attemptedDate = inputs[3].value;
+            const remarks = inputs[4].value;
+        
+            await fetch(`/api/complaints/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ date, complaint, attemptedBy, attemptedDate, remarks })
+            });
+    
+            moveToResolvedComplaints(row, id, date, complaint, attemptedBy, attemptedDate, remarks);
+        }
+        
+        function cancelEdit(row, date, complaint, attemptedBy, attemptedDate, remarks) {
+            row.innerHTML = `
+                <td></td>
+                <td>${date}</td>
+                <td>${complaint}</td>
+                <td>${attemptedBy}</td>
+                <td>${attemptedDate}</td>
+                <td>${remarks}</td>
+                <td class="actions">
+                    <button class="edit">Edit</button>
+                    <button class="delete">Delete</button>
+                </td>
+            `;
+        
+            row.classList.remove('editing');
+            updateSerialNumbers('#complaintsTable');
+        
+            row.querySelector('.edit').addEventListener('click', () => editComplaint(row, id));
+            row.querySelector('.delete').addEventListener('click', () => deleteComplaint(row, id));
+        }
+        
+        async function deleteComplaint(row, id) {
+            try {
+                const response = await fetch(`/api/complaints/${id}`, { method: 'DELETE' });
+                if (!response.ok) {
+                    throw new Error('Failed to delete complaint');
+                }
+                row.remove();
+                updateSerialNumbers('#complaintsTable');
+            } catch (error) {
+                console.error('Error deleting complaint:', error);
+                // Handle error (e.g., display an error message to the user)
+            }
+        }
+        
+        function moveToResolvedComplaints(row, id, date, complaint, attemptedBy, attemptedDate, remarks) {
+            const tableBody = document.querySelector('#resolvedComplaintsTable tbody');
+            const resolvedRow = document.createElement('tr');
+        
+            resolvedRow.innerHTML = `
+                <td></td>
+                <td>${date}</td>
+                <td>${complaint}</td>
+                <td>${attemptedBy}</td>
+                <td>${attemptedDate}</td>
+                <td>${remarks}</td>
+            `;
+        
+            tableBody.appendChild(resolvedRow);
+            updateSerialNumbers('#resolvedComplaintsTable');
+        
+            resolvedRow.classList.add('strike-through');
+        
+            row.remove();
+            updateSerialNumbers('#complaintsTable');
+        }
+        
+        document.getElementById('complaintForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+    
+            const date = document.getElementById('date').value;
+            const complaint = document.getElementById('complaint').value;
+    
+            try {
+                const response = await fetch('/api/complaints', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ date, complaint })
+                });
+    
+                if (!response.ok) {
+                    throw new Error('Failed to add complaint');
+                }
+    
+                const newComplaint = await response.json();
+                addComplaintToTable(newComplaint);
+    
+                document.getElementById('complaintForm').reset();
+            } catch (error) {
+                console.error('Error adding complaint:', error);
+                // Handle error (e.g., display an error message to the user)
+            }
+        });
+    
+        document.addEventListener('animationend', function(event) {
+            if (event.animationName === 'fadeInRow') {
+                event.target.classList.remove('fadeInRow');
+            }
+        });
+
+        function logout() {
+            if (confirm("Are you sure you want to logout?")) {
+                localStorage.removeItem('token'); // Clear the token from localStorage
+                window.location.href = 'http://localhost:3000/login.html';
+            }
+        }
+    </script>    
+    </body>
+    </html>
