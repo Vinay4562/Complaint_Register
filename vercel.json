@@ -8,7 +8,7 @@
     },
     {
       "src": "/complaints",
-      "dest": "/"
+      "dest": "/server.js"
     }
   ]
 }
