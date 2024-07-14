@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Connect to MongoDB
-const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/complaints';
+const mongoURI = process.env.MONGODB_URI || 'mongodb+srv://vkvinaykumar391:vkvinaykumar391@cluster0.nfr4fs7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
