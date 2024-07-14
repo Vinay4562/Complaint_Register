@@ -11,13 +11,14 @@ const PORT = process.env.PORT || 3030;
 app.use(cors());
 app.use(bodyParser.json());
 
-// Serve static files from the public
-app.use(express.static('public'));
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost/complaints', { useNewUrlParser: true, useUnifiedTopology: true });
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/complaints';
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once('open', () => {
     console.log('Connected to MongoDB');
 });
@@ -28,15 +29,15 @@ app.use('/api/complaints', complaintsRouter);
 
 // Serve complaints.html
 app.get('/complaints', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'complaints.html'));
+    res.sendFile(path.join(__dirname, 'public', 'complaints.html'));
 });
 
-// Route to serve complaints_view.html
+// Serve complaints_view.html
 app.get('/complaints/view', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'complaints_view.html'));
+    res.sendFile(path.join(__dirname, 'public', 'complaints_view.html'));
 });
 
 // Start the server
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on http://localhost:${PORT}`);
 });
