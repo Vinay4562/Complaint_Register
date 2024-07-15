@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost/complaints', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://vkvinaykumar391:94vNXbIuMKIcQfJR@complaintregister.nxlzoej.mongodb.net/?retryWrites=true&w=majority&appName=complaintregister', { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
