@@ -471,34 +471,38 @@ button.delete:hover {
             updateSerialNumbers('#complaintsTable');
         }
         
-        document.getElementById('complaintForm').addEventListener('submit', async function(event) {
+        document.querySelector('#complaintForm').addEventListener('submit', async (event) => {
             event.preventDefault();
-    
-            const date = document.getElementById('date').value;
-            const complaint = document.getElementById('complaint').value;
-    
+            const formData = new FormData(event.target);
+            const complaintData = {
+                date: formData.get('date'),
+                type: formData.get('type'),
+                complaint: formData.get('complaint'),
+            };
+
             try {
                 const response = await fetch('/api/complaints', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ date, complaint })
+                    body: JSON.stringify(complaintData),
                 });
-    
+
                 if (!response.ok) {
-                    throw new Error('Failed to add complaint');
+                    const errorText = await response.text();
+                    throw new Error(`Failed to add complaint: ${response.status} ${response.statusText} - ${errorText}`);
                 }
-    
-                const newComplaint = await response.json();
-                addComplaintToTable(newComplaint);
-    
-                document.getElementById('complaintForm').reset();
+
+                const result = await response.json();
+                console.log('Complaint added successfully:', result);
+                // Handle success (e.g., update UI, clear form)
             } catch (error) {
                 console.error('Error adding complaint:', error);
-                // Handle error (e.g., display an error message to the user)
+                alert(`Error adding complaint: ${error.message}`);
             }
         });
+
     
         document.addEventListener('animationend', function(event) {
             if (event.animationName === 'fadeInRow') {
