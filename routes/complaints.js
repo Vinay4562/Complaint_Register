@@ -14,24 +14,26 @@ router.get('/', async (req, res) => {
 
 // Create a new complaint
 router.post('/', async (req, res) => {
+    const { date, complaint, complaintType } = req.body;
+
+    if (!date || !complaint || !complaintType) {
+        return res.status(400).json({ message: "Date, complaint, and complaintType are required." });
+    }
+
+    const newComplaint = new Complaint({
+        date,
+        complaint,
+        complaintType,
+        attemptedBy: req.body.attemptedBy || '',
+        attemptedDate: req.body.attemptedDate || '',
+        remarks: req.body.remarks || ''
+    });
+
     try {
-        const { date, type, complaint } = req.body;
-
-        if (!date || !type || !complaint) {
-            return res.status(400).send('All fields are required.');
-        }
-
-        const newComplaint = new Complaint({
-            date,
-            type,
-            complaint
-        });
-
-        await newComplaint.save();
-        res.status(201).json(newComplaint);
-    } catch (error) {
-        console.error('Error adding complaint:', error);
-        res.status(500).send('Server error. Please try again later.');
+        const savedComplaint = await newComplaint.save();
+        res.status(201).json(savedComplaint);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
     }
 });
 
@@ -47,11 +49,11 @@ router.patch('/:id', async (req, res) => {
         if (req.body.date != null) {
             complaint.date = req.body.date;
         }
-        if (req.body.type != null) {
-            complaint.type = req.body.type;
-        }
         if (req.body.complaint != null) {
             complaint.complaint = req.body.complaint;
+        }
+        if (req.body.complaintType != null) {
+            complaint.complaintType = req.body.complaintType;
         }
         if (req.body.attemptedBy != null) {
             complaint.attemptedBy = req.body.attemptedBy;
