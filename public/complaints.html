@@ -355,20 +355,6 @@ button[type="submit"]:hover {
             </tbody>
         </table>
     </div>
-
-    <script>
-        // Function to check if the user is logged in
-        function checkAuth() {
-            // Replace with actual authentication check logic
-            const isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
-            if (!isLoggedIn) {
-                window.location.href = 'https://loginpage-git-main-vinay-kumars-projects-f1559f4a.vercel.app/';
-            }
-        }
-
-        // Check authentication on page load
-        checkAuth();
-    </script>
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -608,7 +594,7 @@ button[type="submit"]:hover {
 
         function logout() {
             if (confirm("Are you sure you want to logout?")) {
-                sessionStorage.removeItem('isLoggedIn'); // Clear the token from localStorage
+                localStorage.removeItem('token'); // Clear the token from localStorage
                 window.location.href = 'https://loginpage-git-main-vinay-kumars-projects-f1559f4a.vercel.app/';
             }
         }
