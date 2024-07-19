@@ -592,15 +592,6 @@ button[type="submit"]:hover {
             }
         });
 
-        function checkAuth() {
-            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-            if (!isLoggedIn) {
-                window.location.href = 'https://loginpage-git-main-vinay-kumars-projects-f1559f4a.vercel.app/'; // Redirect to login if not authenticated
-            }
-        }
-
-        checkAuth();
-
         function logout() {
             if (confirm("Are you sure you want to logout?")) {
                 localStorage.removeItem('token'); // Clear the token from localStorage
