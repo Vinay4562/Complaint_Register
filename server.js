@@ -43,7 +43,7 @@ const User = mongoose.model('User', UserSchema);
 app.post('/api/login', async (req, res) => {
     const { username, password } = req.body;
     // Default credentials for demonstration purposes
-    if (username === 'admin' && password === 'password123') {
+    if (username === 'Shankarpally400kv' && password === 'Shankarpally@9870') {
         req.session.user = { username };
         return res.status(200).send('Login successful');
     }
