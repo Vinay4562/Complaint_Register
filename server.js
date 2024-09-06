@@ -42,22 +42,20 @@ const User = mongoose.model('User', UserSchema);
 // Authentication Routes
 app.post('/api/login', async (req, res) => {
     const { username, password } = req.body;
-
     // Default credentials for demonstration purposes
     if (username === 'Shankarpally400kv' && password === 'Shankarpally@9870') {
         req.session.user = { username };
-        return res.redirect('/dashboard'); // Redirect to the dashboard route
+        return res.status(200).send('Login successful');
     }
-
     // Real authentication
     const user = await User.findOne({ username, password });
     if (user) {
         req.session.user = { username };
-        res.redirect('/dashboard'); // Redirect to the dashboard route
+        res.status(200).send('Login successful');
     } else {
         res.status(401).send('Invalid credentials');
     }
-})
+});
 
 // Logout route
 app.post('/logout', (req, res) => {
@@ -82,16 +80,6 @@ app.get('/complaints', (req, res) => {
         res.redirect('/login');
     }
 });
-
-// Serve dashboard.html
-app.get('/dashboard', (req, res) => {
-    if (req.session.user) {
-        res.sendFile(path.join(__dirname, 'public', 'complaints.html')); // Serve the correct file
-    } else {
-        res.redirect('/login');
-    }
-});
-
 
 // Serve complaints_view.html
 app.get('/complaints/view', (req, res) => {
