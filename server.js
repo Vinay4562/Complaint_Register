@@ -64,7 +64,6 @@ app.post('/logout', (req, res) => {
             console.error('Logout error:', err);
             return res.status(500).send('Unable to log out');
         }
-        alert('An error occurred');
         res.redirect('/login'); // Redirect to login page or another page after logout
     });
 });

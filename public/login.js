@@ -13,7 +13,6 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
         });
 
         if (response.ok) {
-            alert('Login Succesful');
             window.location.href = '/complaints';
         } else {
             alert('Invalid credentials');
