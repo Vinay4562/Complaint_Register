@@ -40,25 +40,24 @@ const UserSchema = new mongoose.Schema({
 const User = mongoose.model('User', UserSchema);
 
 // Authentication Routes
-// Authentication Routes
 app.post('/api/login', async (req, res) => {
     const { username, password } = req.body;
 
     // Default credentials for demonstration purposes
     if (username === 'Shankarpally400kv' && password === 'Shankarpally@9870') {
         req.session.user = { username };
-        return res.redirect('/dashboard'); // Redirect to a different route
+        return res.redirect('/dashboard'); // Redirect to the dashboard route
     }
 
     // Real authentication
     const user = await User.findOne({ username, password });
     if (user) {
         req.session.user = { username };
-        res.redirect('/dashboard'); // Redirect to a different route
+        res.redirect('/dashboard'); // Redirect to the dashboard route
     } else {
         res.status(401).send('Invalid credentials');
     }
-});
+})
 
 // Logout route
 app.post('/logout', (req, res) => {
@@ -75,14 +74,24 @@ app.post('/logout', (req, res) => {
 const complaintsRouter = require('./routes/complaints');
 app.use('/api/complaints', complaintsRouter);
 
-// Serve dashboard.html
-app.get('/dashboard', (req, res) => {
+// Serve complaints.html
+app.get('/complaints', (req, res) => {
     if (req.session.user) {
         res.sendFile(path.join(__dirname, 'public', 'complaints.html'));
     } else {
         res.redirect('/login');
     }
 });
+
+// Serve dashboard.html
+app.get('/dashboard', (req, res) => {
+    if (req.session.user) {
+        res.sendFile(path.join(__dirname, 'public', 'complaints.html')); // Serve the correct file
+    } else {
+        res.redirect('/login');
+    }
+});
+
 
 // Serve complaints_view.html
 app.get('/complaints/view', (req, res) => {
