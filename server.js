@@ -40,18 +40,21 @@ const UserSchema = new mongoose.Schema({
 const User = mongoose.model('User', UserSchema);
 
 // Authentication Routes
+// Authentication Routes
 app.post('/api/login', async (req, res) => {
     const { username, password } = req.body;
+
     // Default credentials for demonstration purposes
     if (username === 'Shankarpally400kv' && password === 'Shankarpally@9870') {
         req.session.user = { username };
-        return res.status(200).send('Login successful');
+        return res.redirect('/dashboard'); // Redirect to a different route
     }
+
     // Real authentication
     const user = await User.findOne({ username, password });
     if (user) {
         req.session.user = { username };
-        res.status(200).send('Login successful');
+        res.redirect('/dashboard'); // Redirect to a different route
     } else {
         res.status(401).send('Invalid credentials');
     }
@@ -72,8 +75,8 @@ app.post('/logout', (req, res) => {
 const complaintsRouter = require('./routes/complaints');
 app.use('/api/complaints', complaintsRouter);
 
-// Serve complaints.html
-app.get('/complaints', (req, res) => {
+// Serve dashboard.html
+app.get('/dashboard', (req, res) => {
     if (req.session.user) {
         res.sendFile(path.join(__dirname, 'public', 'complaints.html'));
     } else {
