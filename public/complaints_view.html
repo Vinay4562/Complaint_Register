@@ -232,14 +232,21 @@ thead th:hover::after {
                 const row = document.createElement('tr');
                 const isResolved = complaint.attemptedBy && complaint.attemptedDate && complaint.remarks;
                 const statusClass = isResolved ? 'resolved' : 'unresolved';
-                
+
+                // Convert date to DD/MM/YYYY format
+                const formatDate = (isoDate) => {
+                    if (!isoDate) return ''; // Handle missing dates
+                    const [year, month, day] = isoDate.split('T')[0].split('-');
+                    return `${day}/${month}/${year}`;
+                };
+
                 row.innerHTML = `
                     <td>${index + 1}</td>
-                    <td>${complaint.date.split('T')[0]}</td>
+                    <td>${formatDate(complaint.date)}</td>
                     <td>${complaint.complaint}</td>
                     <td>${complaint.complaintType}</td>
                     <td>${complaint.attemptedBy || ''}</td>
-                    <td>${complaint.attemptedDate ? complaint.attemptedDate.split('T')[0] : ''}</td>
+                    <td>${formatDate(complaint.attemptedDate)}</td>
                     <td>${complaint.remarks || ''}</td>
                 `;
                 row.classList.add(statusClass);
