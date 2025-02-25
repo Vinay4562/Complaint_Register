@@ -4,185 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Complaints</title>
-    <style>
-/* styles.css */
+    <link rel="stylesheet" href="Complaintviewstyle.css">
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
-
-/* Header styles */
-.header {
-    background-color: white;
-    color: red;
-    text-decoration: underline 2px;
-    padding: 40px 0;
-    text-align: center;      
-    margin-bottom: 0;  
-}
-.header img {
-    position: absolute;
-    top: 15px;
-    left: 25px;
-    width: 140px;
-    height: 120px;
-}
-
-.header h1 {
-    margin: 0;
-    font-size: 35px;   
-}
-
-/* Updated navbar styles */
-.navbar {
-    background-color: white;
-    overflow: hidden;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    font-weight: bold;
-    padding: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-top: 0;
-    padding-top: 5px;
-}
-
-.navbar a {
-    color: #333;
-    text-align: center;
-    padding: 10px 15px;
-    text-decoration: none;
-    margin-left: 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.navbar a:hover {
-    background: #ffd000;
-    color: #fff;
-    border-radius: 40px;
-    font-weight: bold;
-}
-
-.navbar a:last-child {
-    margin-right: 0; /* Remove margin from the last item */
-}
-
-.container {
-    width: 80%;
-    margin: auto;
-    overflow: hidden;
-    padding: 40px;
-    background: #fff;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    margin-top: 1%;
-    border-radius: 10px;
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    overflow: hidden; /* Ensure table header effect is contained */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-th, td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-thead th {
-    background-color: #007bff; /* Blue header background */
-    color: white;
-    position: relative;
-    transition: background-color 0.3s ease-in-out;
-    cursor: pointer;
-}
-
-thead th:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-}
-
-thead th::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 2px;
-    background-color: white;
-    transition: width 0.3s ease-in-out;
-}
-
-thead th:hover::after {
-    width: 100%;
-}
-
-.resolved {
-    background-color: #d4edda; /* Light green background */
-    text-decoration: line-through;
-    color: #999;
-}
-
-.unresolved {
-    background-color: #f8d7da; /* Light red background */
-}
-
-.fadeInRow {
-    animation: fadeInRow 0.5s ease-in-out;
-}
-
-@keyframes fadeInRow {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-#searchBar {
-            width: 98%;
-            padding: 10px;
-            margin-bottom: 5px;
-            font-size: 16px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .sortable:after {
-            content: ' \25B2\25BC'; /* Unicode arrows for visual indication */
-            font-size: 0.8em;
-            padding-left: 5px;
-        }
-    </style>
 </head>
 <body>
 
     <!-- Header -->
     <div class="header">
-        <img src="logo_new.png" alt="Logo" class="logo" width="180px" height="160px">
-        <h1>TRANSMISSION CORPORATION OF TELANGANA LIMITED</h1>
-    </div>
-
-    <!-- Navigation bar -->
-    <div class="navbar">
-        <a href="https://400kvssshankarpally.free.nf/">Home</a>
-    </div>
+        <img src="logo_new.png" alt="Logo" class="logo" width="130" height="100">
+        <h1>𝐓𝐑𝐀𝐍𝐒𝐌𝐈𝐒𝐒𝐈𝐎𝐍 𝐂𝐎𝐑𝐏𝐎𝐑𝐀𝐓𝐈𝐎𝐍 𝐎𝐅 𝐓𝐄𝐋𝐀𝐍𝐆𝐀𝐍𝐀 𝐋𝐈𝐌𝐈𝐓𝐄𝐃</h1>
+      </div>
+    
+      <!-- Navigation bar -->
+      <div class="navbar">
+        <a href='https://400kvssshankarpally.free.nf/'>Home</a>
+        <a href="https://400kvssshankarpally.free.nf/underConstruction.html">LC Procedures</a>
+        <a href='https://maxregister-git-main-vinay-kumars-projects-f1559f4a.vercel.app/Displaydata_original.html'>Max-Min data</a>
+      </div>
 
     <div class="container">
         <h1>All Complaints</h1>
@@ -223,8 +61,11 @@ thead th:hover::after {
     async function fetchAndDisplayComplaints() {
         try {
             const response = await fetch('/api/complaints');
-            const complaints = await response.json();
-            
+            let complaints = await response.json();
+
+            // Sort complaints by date in ascending order
+            complaints.sort((a, b) => new Date(a.date) - new Date(b.date));
+
             const tableBody = document.querySelector('#allComplaintsTable tbody');
             tableBody.innerHTML = ''; // Clear existing rows
             
@@ -232,21 +73,14 @@ thead th:hover::after {
                 const row = document.createElement('tr');
                 const isResolved = complaint.attemptedBy && complaint.attemptedDate && complaint.remarks;
                 const statusClass = isResolved ? 'resolved' : 'unresolved';
-
-                // Convert date to DD/MM/YYYY format
-                const formatDate = (isoDate) => {
-                    if (!isoDate) return ''; // Handle missing dates
-                    const [year, month, day] = isoDate.split('T')[0].split('-');
-                    return `${day}/${month}/${year}`;
-                };
-
+                
                 row.innerHTML = `
                     <td>${index + 1}</td>
-                    <td>${formatDate(complaint.date)}</td>
+                    <td>${complaint.date.split('T')[0]}</td>
                     <td>${complaint.complaint}</td>
                     <td>${complaint.complaintType}</td>
                     <td>${complaint.attemptedBy || ''}</td>
-                    <td>${formatDate(complaint.attemptedDate)}</td>
+                    <td>${complaint.attemptedDate ? complaint.attemptedDate.split('T')[0] : ''}</td>
                     <td>${complaint.remarks || ''}</td>
                 `;
                 row.classList.add(statusClass);

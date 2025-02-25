@@ -1,0 +1,160 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+.header {
+    background: #004aad;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    animation: slideDown 1s ease-in-out;
+}
+
+/* Logo styling */
+.logo {
+    width: 130px;
+    height: 100px;
+    background-color: white; /* Set background color to white */
+    padding: 10px; /* Optional: Add some padding around the logo */
+    border-radius: 10px; /* Optional: Add rounded corners */
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+/* Navigation Bar */
+.navbar {
+    background: #007bff;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    transition: all 0.3s;
+}
+
+.navbar a:hover {
+    background: white;
+    color: #007bff;
+    border-radius: 5px;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding: 40px;
+    background: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin-top: 1%;
+    border-radius: 10px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow: hidden; /* Ensure table header effect is contained */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+thead th {
+    background-color: #007bff; /* Blue header background */
+    color: white;
+    position: relative;
+    transition: background-color 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+thead th:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+thead th::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s ease-in-out;
+}
+
+thead th:hover::after {
+    width: 100%;
+}
+
+.resolved {
+    background-color: #d4edda; /* Light green background */
+    text-decoration: line-through;
+    color: #999;
+}
+
+.unresolved {
+    background-color: #f8d7da; /* Light red background */
+}
+
+.fadeInRow {
+    animation: fadeInRow 0.5s ease-in-out;
+}
+
+@keyframes fadeInRow {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#searchBar {
+    width: 98%;
+    padding: 10px;
+    margin-bottom: 5px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+    .sortable:after {
+    content: ' \25B2\25BC'; /* Unicode arrows for visual indication */
+    font-size: 0.8em;
+    padding-left: 5px;
+}
