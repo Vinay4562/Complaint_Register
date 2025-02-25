@@ -1,15 +1,14 @@
-/* General Body Styling */
+
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #007bff, #004aad);
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    color: white;
 }
 
 /* Header */
 .header {
-    background: rgba(0, 74, 173, 0.9);
+    background: #004aad;
     color: white;
     padding: 15px;
     text-align: center;
@@ -17,21 +16,17 @@ body {
     align-items: center;
     justify-content: center;
     gap: 20px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     animation: slideDown 1s ease-in-out;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
 }
 
 /* Logo styling */
 .logo {
     width: 130px;
     height: 100px;
-    background-color: white;
-    padding: 10px;
-    border-radius: 10px;
-    transition: transform 0.3s ease-in-out;
+    background-color: white; /* Set background color to white */
+    padding: 10px; /* Optional: Add some padding around the logo */
+    border-radius: 10px; /* Optional: Add rounded corners */
 }
 
 .logo:hover {
@@ -40,51 +35,34 @@ body {
 
 /* Navigation Bar */
 .navbar {
-    background: rgba(0, 123, 255, 0.9);
-    padding: 12px 0;
+    background: #007bff;
+    padding: 10px 0;
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
     position: sticky;
-    top: 60px;
-    z-index: 999;
+    top: 0;
+    z-index: 1000;
     animation: fadeIn 1.5s ease-in-out;
 }
 
 .navbar a {
     color: white;
     text-decoration: none;
-    padding: 12px 20px;
+    padding: 10px 20px;
     font-size: 18px;
-    font-weight: bold;
-    border-radius: 8px;
-    transition: all 0.3s ease-in-out;
-    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s;
 }
 
 .navbar a:hover {
     background: white;
     color: #007bff;
-    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.3);
-}
-
-/* Container */
-.container {
-    text-align: center;
-    margin: 30px auto;
-    width: 90%;
-    max-width: 1000px;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
-    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    animation: fadeIn 1.2s ease-in-out;
+    border-radius: 5px;
 }
 
 /* Title */
 .container h1 {
-    font-size: 28px;
+    font-size: 26px;
     margin-bottom: 20px;
     text-transform: uppercase;
     letter-spacing: 1.5px;
@@ -95,14 +73,14 @@ body {
     width: 100%;
     padding: 12px;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     font-size: 16px;
     outline: none;
     transition: 0.3s;
     background: rgba(255, 255, 255, 0.2);
     color: white;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 #searchBar::placeholder {
@@ -122,77 +100,36 @@ table {
     margin-top: 20px;
     border-radius: 10px;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.1);
 }
 
 th, td {
     padding: 12px;
     text-align: center;
-    color: white;
 }
 
 th {
     background: rgba(0, 0, 0, 0.8);
+    color: white;
     cursor: pointer;
     position: relative;
-    transition: all 0.3s ease;
 }
 
 th:hover {
     background: #ffcc00;
     color: black;
+    transition: 0.3s ease;
 }
 
-/* Table Row Effects */
-tbody tr {
-    background: rgba(255, 255, 255, 0.2);
-    transition: all 0.3s ease-in-out;
-}
-
-tbody tr:nth-child(even) {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-tbody tr:hover {
-    background: rgba(255, 255, 255, 0.4);
-    transform: scale(1.02);
-}
-
-/* Table Borders */
-th, td {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-/* Resolved Complaints */
 .resolved {
-    background-color: #d4edda;
+    background-color: #d4edda; /* Light green background */
     text-decoration: line-through;
-    color: #6c757d;
-    opacity: 0.7;
-    transition: all 0.3s ease-in-out;
+    color: #999;
 }
 
-.resolved:hover {
-    background-color: #c3e6cb;
-    color: #495057;
-    opacity: 1;
-    transform: scale(1.02);
-}
-
-/* Unresolved Complaints */
 .unresolved {
-    background-color: #f8d7da;
-    color: #721c24;
-    font-weight: bold;
-    transition: all 0.3s ease-in-out;
+    background-color: #f8d7da; /* Light red background */
 }
 
-.unresolved:hover {
-    background-color: #f5c6cb;
-    transform: scale(1.02);
-}
-
-/* Row Fade-In Effect */
 .fadeInRow {
     animation: fadeInRow 0.5s ease-in-out;
 }
@@ -208,32 +145,40 @@ th, td {
     }
 }
 
-/* Sortable Table Headers */
-.sortable:after {
-    content: ' \25B2\25BC';
+#searchBar {
+    width: 98%;
+    padding: 10px;
+    margin-bottom: 5px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+    .sortable:after {
+    content: ' \25B2\25BC'; /* Unicode arrows for visual indication */
     font-size: 0.8em;
     padding-left: 5px;
 }
 
-/* Key Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Scrollable Table */
+table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-radius: 10px;
 }
 
-@keyframes slideDown {
-    from {
-        transform: translateY(-100%);
-        opacity: 0;
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
     }
-    to {
-        transform: translateY(0);
-        opacity: 1;
+
+    .navbar a {
+        display: block;
+        width: 100%;
+        text-align: center;
     }
 }
