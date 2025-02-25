@@ -108,17 +108,28 @@ body {
 
 /* Table */
 table {
-    width: 95%; /* Adjust the width */
-    max-width: 1400px; /* Prevent it from stretching too much on large screens */
-    margin: 20px auto; /* Center the table with side margins */
+    width: 100%; /* Full width */
+    max-width: 1400px; /* Prevent excessive stretching */
+    margin: 20px auto;
     border-collapse: collapse;
     border-radius: 10px;
+    display: block;
+    overflow-x: auto; /* Allow horizontal scrolling */
+    white-space: nowrap; /* Prevents content from wrapping */
 }
 
+/* Scroll wrapper for better responsiveness */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin: 10px auto;
+}
+
+/* Table Cells */
 th, td {
     padding: 12px;
     text-align: center;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Subtle border */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 th {
@@ -137,14 +148,6 @@ th:hover {
 /* Table Borders */
 th, td {
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-/* Scrollable Table */
-table {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    border-radius: 10px;
 }
 
 .sortable::after {
@@ -218,7 +221,64 @@ table {
     }
 
     .sortable:after {
-    content: ' \25B2\25BC'; /* Unicode arrows for visual indication */
-    font-size: 0.8em;
-    padding-left: 5px;
-}}
+        content: ' \25B2\25BC'; /* Unicode arrows for visual indication */
+        font-size: 0.8em;
+        padding-left: 5px;
+    }
+
+    table {
+        font-size: 14px; /* Reduce font size */
+        white-space: normal; /* Allow text wrapping */
+    }
+
+    th, td {
+        padding: 8px; /* Reduce padding */
+    }
+}
+
+@media (max-width: 480px) {
+    table {
+        font-size: 12px; /* Further reduce font size */
+    }
+
+    th, td {
+        padding: 6px; /* Minimize padding */
+    }
+
+    th {
+        font-size: 13px; /* Adjust header size */
+    }
+
+    /* Stack table headers on small screens */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead {
+        display: none; /* Hide table headers */
+    }
+
+    tr {
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background: #f9f9f9;
+        padding: 10px;
+    }
+
+    td {
+        text-align: left;
+        display: flex;
+        justify-content: space-between;
+        padding: 8px;
+        border-bottom: none;
+        position: relative;
+    }
+
+    td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #007bff;
+    }
+}
