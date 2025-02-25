@@ -109,7 +109,7 @@ body {
 /* Table */
 table {
     width: 95%; /* Adjust the width */
-    max-width: 1200px; /* Prevent it from stretching too much on large screens */
+    max-width: 1400px; /* Prevent it from stretching too much on large screens */
     margin: 20px auto; /* Center the table with side margins */
     border-collapse: collapse;
     border-radius: 10px;
@@ -137,6 +137,14 @@ th:hover {
 /* Table Borders */
 th, td {
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Scrollable Table */
+table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-radius: 10px;
 }
 
 .sortable::after {
