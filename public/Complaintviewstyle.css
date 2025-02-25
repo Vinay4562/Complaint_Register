@@ -60,62 +60,105 @@ body {
     border-radius: 5px;
 }
 
+/* Container */
 .container {
-    width: 80%;
-    margin: auto;
-    overflow: hidden;
-    padding: 40px;
-    background: #fff;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    margin-top: 1%;
-    border-radius: 10px;
-}
-
-h1 {
     text-align: center;
-    margin-bottom: 20px;
+    margin: 30px auto;
+    width: 90%;
+    max-width: 1000px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
 }
 
+/* Title */
+.container h1 {
+    font-size: 26px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* Search Bar */
+#searchBar {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+#searchBar::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#searchBar:focus {
+    background: white;
+    color: black;
+    transform: scale(1.05);
+}
+
+/* Table */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    overflow: hidden; /* Ensure table header effect is contained */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 th, td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
 }
 
-thead th {
-    background-color: #007bff; /* Blue header background */
+th {
+    background: rgba(0, 0, 0, 0.8);
     color: white;
-    position: relative;
-    transition: background-color 0.3s ease-in-out;
     cursor: pointer;
+    position: relative;
 }
 
-thead th:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+th:hover {
+    background: #ffcc00;
+    color: black;
+    transition: 0.3s ease;
 }
 
-thead th::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 2px;
-    background-color: white;
-    transition: width 0.3s ease-in-out;
+/* Table Row Effects */
+tbody tr {
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease-in-out;
 }
 
-thead th:hover::after {
-    width: 100%;
+tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+tbody tr:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.02);
+}
+
+/* Table Borders */
+th, td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Scrollable Table */
+table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-radius: 10px;
 }
 
 .resolved {
