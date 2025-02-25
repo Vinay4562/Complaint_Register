@@ -1,4 +1,3 @@
-
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -20,20 +19,21 @@ body {
     animation: slideDown 1s ease-in-out;
 }
 
-/* Logo styling */
+/* Logo */
 .logo {
     width: 130px;
     height: 100px;
-    background-color: white; /* Set background color to white */
-    padding: 10px; /* Optional: Add some padding around the logo */
-    border-radius: 10px; /* Optional: Add rounded corners */
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
 }
 
 .logo:hover {
     transform: scale(1.1);
 }
 
-/* Navigation Bar */
+/* Navigation */
 .navbar {
     background: #007bff;
     padding: 10px 0;
@@ -70,17 +70,17 @@ body {
 
 /* Search Bar */
 #searchBar {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
+    width: 98%;
+    padding: 10px;
+    margin-bottom: 5px;
     font-size: 16px;
-    outline: none;
-    transition: 0.3s;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background: rgba(255, 255, 255, 0.2);
     color: white;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: 0.3s ease-in-out;
 }
 
 #searchBar::placeholder {
@@ -100,11 +100,15 @@ table {
     margin-top: 20px;
     border-radius: 10px;
     overflow: hidden;
+    display: block;
+    overflow-x: auto;
+    max-width: 100%;
 }
 
 th, td {
     padding: 12px;
     text-align: center;
+    white-space: normal; /* Allow wrapping */
 }
 
 th {
@@ -112,24 +116,49 @@ th {
     color: white;
     cursor: pointer;
     position: relative;
+    transition: 0.3s ease;
 }
 
 th:hover {
     background: #ffcc00;
     color: black;
-    transition: 0.3s ease;
 }
 
+.sortable::after {
+    content: ' \25B2\25BC'; /* Unicode arrows */
+    font-size: 0.8em;
+    padding-left: 5px;
+}
+
+/* Complaint Status */
 .resolved {
-    background-color: #d4edda; /* Light green background */
+    background-color: #d4edda;
     text-decoration: line-through;
-    color: #999;
+    color: #155724;
+    opacity: 0.7;
+    border-left: 5px solid #28a745;
 }
 
 .unresolved {
-    background-color: #f8d7da; /* Light red background */
+    background-color: #f8d7da;
+    color: #721c24;
+    font-weight: bold;
+    border-left: 5px solid #dc3545;
+    transition: all 0.3s ease-in-out;
 }
 
+.unresolved:hover {
+    background-color: #f5c6cb;
+    transform: scale(1.02);
+}
+
+.resolved:hover {
+    background-color: #c3e6cb;
+    opacity: 1;
+    transform: scale(1.02);
+}
+
+/* Row Animation */
 .fadeInRow {
     animation: fadeInRow 0.5s ease-in-out;
 }
@@ -143,30 +172,6 @@ th:hover {
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-#searchBar {
-    width: 98%;
-    padding: 10px;
-    margin-bottom: 5px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-    .sortable:after {
-    content: ' \25B2\25BC'; /* Unicode arrows for visual indication */
-    font-size: 0.8em;
-    padding-left: 5px;
-}
-
-/* Scrollable Table */
-table {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    border-radius: 10px;
 }
 
 /* Responsive Design */
