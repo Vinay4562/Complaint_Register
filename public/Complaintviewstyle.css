@@ -108,16 +108,17 @@ body {
 
 /* Table */
 table {
-    width: 100%;
+    width: 95%; /* Adjust the width */
+    max-width: 1200px; /* Prevent it from stretching too much on large screens */
+    margin: 20px auto; /* Center the table with side margins */
     border-collapse: collapse;
-    margin-top: 20px;
     border-radius: 10px;
-    overflow: hidden;
 }
 
 th, td {
     padding: 12px;
     text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Subtle border */
 }
 
 th {
