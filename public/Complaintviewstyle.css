@@ -67,11 +67,10 @@ body {
     width: 90%;
     max-width: 1000px;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    animation: fadeIn 1.2s ease-in-out;
+    backdrop-filter: blur(8px);
 }
 
 /* Title */
@@ -87,14 +86,14 @@ body {
     width: 100%;
     padding: 12px;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     font-size: 16px;
     outline: none;
     transition: 0.3s;
     background: rgba(255, 255, 255, 0.2);
     color: white;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 #searchBar::placeholder {
@@ -114,15 +113,11 @@ table {
     margin-top: 20px;
     border-radius: 10px;
     overflow: hidden;
-    display: block;
-    overflow-x: auto;
-    max-width: 100%;
 }
 
 th, td {
     padding: 12px;
     text-align: center;
-    white-space: normal; /* Allow wrapping */
 }
 
 th {
@@ -130,12 +125,25 @@ th {
     color: white;
     cursor: pointer;
     position: relative;
-    transition: 0.3s ease;
 }
 
 th:hover {
     background: #ffcc00;
     color: black;
+    transition: 0.3s ease;
+}
+
+/* Table Borders */
+th, td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Scrollable Table */
+table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-radius: 10px;
 }
 
 .sortable::after {
