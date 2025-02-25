@@ -161,15 +161,37 @@ table {
     border-radius: 10px;
 }
 
+/* Resolved Complaints */
 .resolved {
-    background-color: #d4edda; /* Light green background */
+    background-color: #d4edda; /* Light green */
     text-decoration: line-through;
-    color: #999;
+    color: #6c757d; /* Darker grey for better readability */
+    opacity: 0.7;
+    transition: all 0.3s ease-in-out;
 }
 
-.unresolved {
-    background-color: #f8d7da; /* Light red background */
+/* Hover effect for Resolved Complaints */
+.resolved:hover {
+    background-color: #c3e6cb;
+    color: #495057; /* Slightly darker for contrast */
+    opacity: 1;
+    transform: scale(1.02);
 }
+
+/* Unresolved Complaints */
+.unresolved {
+    background-color: #f8d7da; /* Light red */
+    color: #721c24; /* Dark red text */
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover effect for Unresolved Complaints */
+.unresolved:hover {
+    background-color: #f5c6cb;
+    transform: scale(1.02);
+}
+
 
 .fadeInRow {
     animation: fadeInRow 0.5s ease-in-out;
