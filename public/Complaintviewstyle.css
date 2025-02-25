@@ -3,6 +3,7 @@ body {
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    padding-bottom: 50px; /* Prevent footer overlap */
 }
 
 /* Header */
@@ -13,7 +14,7 @@ body {
     text-align: center;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 20px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     animation: slideDown 1s ease-in-out;
@@ -89,15 +90,10 @@ body {
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background: rgba(255, 255, 255, 0.9); /* Increased opacity */
-    color: black; /* Ensure input text is visible */
+    background: rgba(255, 255, 255, 0.9);
+    color: black;
     text-align: center;
     transition: 0.3s ease-in-out;
-}
-
-#searchBar::placeholder {
-    color: #555; /* Dark gray for better visibility */
-    opacity: 1; /* Ensure the placeholder is fully visible */
 }
 
 #searchBar:focus {
@@ -108,24 +104,22 @@ body {
 
 /* Table */
 table {
-    width: 100%; /* Full width */
-    max-width: 1400px; /* Prevent excessive stretching */
+    width: 100%;
+    max-width: 1400px;
     margin: 20px auto;
     border-collapse: collapse;
     border-radius: 10px;
     display: block;
-    overflow-x: auto; /* Allow horizontal scrolling */
-    white-space: nowrap; /* Prevents content from wrapping */
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
-/* Scroll wrapper for better responsiveness */
 .table-container {
     width: 100%;
     overflow-x: auto;
     margin: 10px auto;
 }
 
-/* Table Cells */
 th, td {
     padding: 12px;
     text-align: center;
@@ -137,21 +131,20 @@ th {
     color: white;
     cursor: pointer;
     position: relative;
+    transition: background 0.4s ease-in-out;
 }
 
 th:hover {
     background: #ffcc00;
     color: black;
-    transition: 0.3s ease;
 }
 
-/* Table Borders */
 th, td {
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .sortable::after {
-    content: ' \25B2\25BC'; /* Unicode arrows */
+    content: ' \25B2\25BC';
     font-size: 0.8em;
     padding-left: 5px;
 }
@@ -173,14 +166,7 @@ th, td {
     transition: all 0.3s ease-in-out;
 }
 
-.unresolved:hover {
-    background-color: #f5c6cb;
-    transform: scale(1.02);
-}
-
-.resolved:hover {
-    background-color: #c3e6cb;
-    opacity: 1;
+.unresolved:hover, .resolved:hover {
     transform: scale(1.02);
 }
 
@@ -190,14 +176,8 @@ th, td {
 }
 
 @keyframes fadeInRow {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* Footer */
@@ -210,7 +190,7 @@ th, td {
     left: 0;
     width: 100%;
     text-align: center;
-    z-index: 1000; /* Ensures the footer stays above other elements */
+    z-index: 1000;
 }
 
 /* Responsive Design */
@@ -219,45 +199,35 @@ th, td {
         flex-direction: column;
         align-items: center;
     }
-
-    .sortable:after {
-        content: ' \25B2\25BC'; /* Unicode arrows for visual indication */
-        font-size: 0.8em;
-        padding-left: 5px;
-    }
-
     table {
-        font-size: 14px; /* Reduce font size */
-        white-space: normal; /* Allow text wrapping */
+        font-size: 14px;
+        white-space: normal;
     }
-
     th, td {
-        padding: 8px; /* Reduce padding */
+        padding: 8px;
     }
 }
 
 @media (max-width: 480px) {
     table {
-        font-size: 12px; /* Further reduce font size */
+        font-size: 12px;
     }
-
     th, td {
-        padding: 6px; /* Minimize padding */
+        padding: 6px;
     }
-
     th {
-        font-size: 13px; /* Adjust header size */
+        font-size: 13px;
     }
-
-    /* Stack table headers on small screens */
     table, thead, tbody, th, td, tr {
         display: block;
     }
-
     thead {
-        display: none; /* Hide table headers */
+        position: sticky;
+        top: 0;
+        background: #007bff;
+        color: white;
+        z-index: 10;
     }
-
     tr {
         margin-bottom: 10px;
         border: 1px solid #ddd;
@@ -265,7 +235,6 @@ th, td {
         background: #f9f9f9;
         padding: 10px;
     }
-
     td {
         text-align: left;
         display: flex;
@@ -274,7 +243,6 @@ th, td {
         border-bottom: none;
         position: relative;
     }
-
     td:before {
         content: attr(data-label);
         font-weight: bold;
