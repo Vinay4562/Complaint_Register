@@ -138,16 +138,18 @@ th, td {
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-/* Table Row Hover Effect */
 tr {
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background 0.3s ease-in-out;
+    position: relative;
+    transition: all 0.3s ease-in-out;
 }
 
 tr:hover {
-    transform: scale(1.02);
-    background-color: rgba(0, 123, 255, 0.15); /* Light blue background */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Soft glow effect */
-    border-radius: 5px;
+    background-color: #eef7ff; /* Subtle blue background */
+    box-shadow: inset 0px 0px 5px 2px rgba(0, 123, 255, 0.3);
+}
+
+tr:hover td {
+    border-bottom: 2px solid #007bff;
 }
 
 .sortable::after {
