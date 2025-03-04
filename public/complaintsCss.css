@@ -1,32 +1,47 @@
 
-/* Header */
 .header {
-    background: #0073e6;
-    color: white;
-    padding: 10px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
+    background-color: white;
+    color: red;
+    text-decoration: underline 2px;
+    padding: 40px 0;
+    text-align: center;
+    margin-bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    z-index: 1000;
+}
+
+.header img {
+    position: absolute;
+    top: 15px;
+    left: 25px;
+    width: 120px;
+    height: 100px;
 }
 
 .header h1 {
-    font-size: 24px;
+    margin: 0;
+    font-size: 30px;
 }
 
-.logo {
-    width: 130px;
-    height: 100px;
-    background-color: white; /* Set background color to white */
-    padding: 10px; /* Optional: Add some padding around the logo */
-    border-radius: 10px; /* Optional: Add rounded corners */
-}
-
-/* Navbar */
 .navbar {
-    background: #005bb5;
-    padding: 30px;
-    text-align: right;
+    background-color: white;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 117px;
+    padding-top: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0px;
+    z-index: 1000;
 }
 
 .loader {
@@ -84,7 +99,8 @@ transform: translateY(0);
 .fadeInRow {
 animation: fadeInRow 0.5s ease-in-out;
 }
-/* Table styling */
+
+/* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -94,18 +110,7 @@ table {
     overflow: hidden; /* Ensure rounded corners are visible */
 }
 
-.table-container {
-width: 100%;
-overflow-x: auto; /* Enable horizontal scroll */
-margin-top: 20px; /* Adjust spacing */
-}
-
-th, td {
-padding: 12px;
-text-align: left;
-border-bottom: 1px solid #ddd;
-}
-
+/* Table Header */
 th {
     background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient background */
     color: white;
@@ -115,22 +120,13 @@ th {
     border-bottom: 2px solid #444; /* Darker border for contrast */
 }
 
+/* Table Rows */
 td {
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid #ddd;
     background-color: #f9f9f9; /* Light background for rows */
     transition: background-color 0.3s ease; /* Smooth hover effect */
-}
-
-.editing input, .editing textarea {
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.strike-through {
-    text-decoration: line-through;
-    color: #999;
 }
 
 /* Alternating Row Colors */
@@ -160,7 +156,7 @@ tbody tr:hover {
     background: #f1f1f1;
 }
 
-/* Button styles */
+/* Action Buttons in Table */
 button.edit {
     background-color: #4caf50; /* Green for edit button */
     color: white;
@@ -189,21 +185,42 @@ button.delete:hover {
     background-color: #e53935; /* Darker red on hover */
 }
 
+/* Table Container */
+.table-container {
+    width: 100%;
+    overflow-x: auto; /* Enable horizontal scroll for small screens */
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    th, td {
+        padding: 8px; /* Reduce padding for smaller screens */
+    }
+
+    button.edit, button.delete {
+        padding: 6px 10px; /* Smaller buttons for mobile */
+        font-size: 12px; /* Smaller font size for mobile */
+    }
+}
+
 /* Container styling */
 .container {
-    width: 80%;
-    margin: auto;
-    overflow: hidden;
-    padding: 10px;
-    background: #fff;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    margin-top: 8%;
-    border-radius: 10px;
-    animation: fadeIn 1s ease-in-out;
+width: 80%;
+margin: auto;
+overflow: hidden;
+padding: 10px;
+background: #fff;
+box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+margin-top: 14%;
+border-radius: 10px;
+animation: fadeIn 1s ease-in-out;
 }
 
 h1, h2 {
-    text-align: center;
+text-align: center;
 }
 
 /* Form container */
