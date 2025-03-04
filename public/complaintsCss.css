@@ -85,58 +85,42 @@
     100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* Styling the logout button */
-#logoutButton {
-    float: right;
-    background-color: #f44336;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
+/* Hover effect */
+tbody tr:hover {
+background-color: #f0f0f0;
+transition: background-color 0.3s ease;
 }
-    
-#logoutButton:hover {
-    background-color: #d32f2f;
+/* Animation on row entry */
+@keyframes fadeInRow {
+from {
+opacity: 0;
+transform: translateY(-10px);
 }
-
-/* Container Adjustments for Mobile */
-.container {
-    width: 95%; /* Increase width for smaller screens */
-    margin: 20px auto; /* Reduce top margin */
-    padding: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    margin-top: 20px; /* Reduce top margin */
+to {
+opacity: 1;
+transform: translateY(0);
+}
 }
 
-/* Form Adjustments for Mobile */
-.form-container {
-    max-width: 100%; /* Full width on small screens */
-    padding: 15px; /* Reduce padding */
+.fadeInRow {
+animation: fadeInRow 0.5s ease-in-out;
+}
+/* Animation on row entry */
+@keyframes fadeInRow {
+from {
+opacity: 0;
+transform: translateY(-10px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
 }
 
-form {
-    display: flex;
-    flex-direction: column; /* Stack form elements vertically */
-    gap: 10px;
+.fadeInRow {
+animation: fadeInRow 0.5s ease-in-out;
 }
-
-input[type="date"],
-select,
-textarea {
-    width: 100%; /* Full width for inputs */
-    padding: 8px; /* Reduce padding */
-    font-size: 14px; /* Reduce font size */
-}
-
-button[type="submit"] {
-    width: 100%; /* Full width for submit button */
-    padding: 10px; /* Reduce padding */
-    font-size: 14px; /* Reduce font size */
-}
-
-/* Table Styling */
+/* Table styling */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -146,7 +130,18 @@ table {
     overflow: hidden; /* Ensure rounded corners are visible */
 }
 
-/* Table Header */
+.table-container {
+width: 100%;
+overflow-x: auto; /* Enable horizontal scroll */
+margin-top: 20px; /* Adjust spacing */
+}
+
+th, td {
+padding: 12px;
+text-align: left;
+border-bottom: 1px solid #ddd;
+}
+
 th {
     background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient background */
     color: white;
@@ -156,7 +151,6 @@ th {
     border-bottom: 2px solid #444; /* Darker border for contrast */
 }
 
-/* Table Rows */
 td {
     padding: 12px;
     text-align: left;
@@ -165,22 +159,44 @@ td {
     transition: background-color 0.3s ease; /* Smooth hover effect */
 }
 
-/* Alternating Row Colors */
-tbody tr:nth-child(even) {
-    background-color: #e3f2fd; /* Light blue for even rows */
+.editing input, .editing textarea {
+    width: 100%;
+    box-sizing: border-box;
 }
 
+.strike-through {
+    text-decoration: line-through;
+    color: #999;
+}
+
+/* Alternating Row Colors */
+tbody tr:nth-child(even) {
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+}
 tbody tr:nth-child(odd) {
-    background-color: #fff3e0; /* Light orange for odd rows */
+    background: linear-gradient(135deg, #fff3e0, #ffe0b2);
 }
 
 /* Hover Effect on Rows */
 tbody tr:hover {
-    background-color: #ffcc80; /* Bright orange on hover */
-    transition: background-color 0.3s ease;
+    background-color: #ffcc80;
+    transform: scale(1.02); /* Slightly enlarge the row */
+    transition: all 0.3s ease;
 }
 
-/* Action Buttons in Table */
+.table-container::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+.table-container::-webkit-scrollbar-thumb {
+    background: #6a11cb;
+    border-radius: 4px;
+}
+.table-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Button styles */
 button.edit {
     background-color: #4caf50; /* Green for edit button */
     color: white;
@@ -209,97 +225,88 @@ button.delete:hover {
     background-color: #e53935; /* Darker red on hover */
 }
 
-/* Table Container */
-.table-container {
-    width: 100%;
-    overflow-x: auto; /* Enable horizontal scroll for small screens */
-    margin-top: 20px;
-    border-radius: 10px;
+/* Container styling */
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding: 10px;
+    background: #fff;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin-top: 14%;
+    border-radius: 10px;
+    animation: fadeIn 1s ease-in-out;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    th, td {
-        padding: 8px; /* Reduce padding for smaller screens */
-    }
-
-    button.edit, button.delete {
-        padding: 6px 10px; /* Smaller buttons for mobile */
-        font-size: 12px; /* Smaller font size for mobile */
-    }
+h1, h2 {
+    text-align: center;
 }
 
-/* Media Queries for Specific Screen Sizes */
-@media (max-width: 768px) {
-    .header h1 {
-        font-size: 20px; /* Further reduce font size for smaller screens */
-    }
-
-    .navbar {
-        padding: 5px; /* Reduce padding */
-    }
-
-    .container {
-        margin-top: 10px; /* Reduce top margin */
-    }
-
-    .form-container {
-        padding: 10px; /* Reduce padding */
-    }
-
-    input[type="date"],
-    select,
-    textarea {
-        font-size: 12px; /* Further reduce font size */
-    }
-
-    button[type="submit"] {
-        font-size: 12px; /* Further reduce font size */
-    }
-
-    table {
-        font-size: 12px; /* Further reduce font size */
-    }
-
-    th, td {
-        padding: 6px; /* Further reduce padding */
-    }
+/* Form container */
+.form-container {
+max-width: 600px;
+margin: 20px auto;
+padding: 20px;
+background: #fff;
+border-radius: 8px;
+box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-@media (max-width: 480px) {
-    .header h1 {
-        font-size: 18px; /* Smallest font size for very small screens */
-    }
+/* Form styles */
+form {
+display: grid;
+gap: 10px;
+}
 
-    .navbar a {
-        padding: 8px; /* Reduce padding */
-    }
+label {
+font-weight: bold;
+}
 
-    .container {
-        width: 100%; /* Full width for very small screens */
-        margin-top: 5px; /* Reduce top margin */
-    }
+input[type="date"],
+select,
+textarea {
+width: 100%;
+padding: 10px;
+font-size: 16px;
+border: 1px solid #ddd;
+border-radius: 5px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+transition: border-color 0.3s ease-in-out;
+}
 
-    .form-container {
-        padding: 5px; /* Reduce padding */
-    }
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+outline: none;
+border-color: #007bff;
+}
 
-    input[type="date"],
-    select,
-    textarea {
-        font-size: 10px; /* Smallest font size */
-    }
+button[type="submit"] {
+background-color: #007bff;
+color: white;
+border: none;
+padding: 12px 20px;
+font-size: 16px;
+border-radius: 5px;
+cursor: pointer;
+transition: background-color 0.3s ease-in-out;
+}
 
-    button[type="submit"] {
-        font-size: 10px; /* Smallest font size */
-    }
+button[type="submit"]:hover {
+background-color: #0056b3;
+}
 
-    table {
-        font-size: 10px; /* Smallest font size */
-    }
+/* Styling the logout button */
+#logoutButton {
+float: right;
+background-color: #f44336;
+color: white;
+padding: 10px 20px;
+border: none;
+cursor: pointer;
+font-size: 16px;
+}
 
-    th, td {
-        padding: 4px; /* Smallest padding */
-    }
+#logoutButton:hover {
+background-color: #d32f2f;
 }
