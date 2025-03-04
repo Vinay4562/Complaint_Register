@@ -1,307 +1,189 @@
+/* General Mobile-Friendly Adjustments */
+body {
+    font-size: 16px; /* Base font size for readability */
+    line-height: 1.5; /* Improve readability on small screens */
+}
 
+/* Header Adjustments for Mobile */
 .header {
-    background-color: white;
-    color: red;
-    text-decoration: underline 2px;
-    padding: 40px 0;
+    position: relative; /* Change to relative for better stacking */
+    padding: 20px 0; /* Reduce padding for smaller screens */
     text-align: center;
     margin-bottom: 0;
     width: 100%;
     box-sizing: border-box;
-    position: absolute;
-    top: 0;
-    z-index: 1000;
 }
 
 .header img {
-    position: absolute;
-    top: 15px;
-    left: 25px;
-    width: 120px;
-    height: 100px;
+    position: static; /* Remove absolute positioning */
+    display: block; /* Center the logo */
+    margin: 0 auto 10px; /* Add margin for spacing */
+    width: 100px; /* Reduce logo size for mobile */
+    height: auto; /* Maintain aspect ratio */
 }
 
 .header h1 {
+    font-size: 24px; /* Reduce font size for smaller screens */
     margin: 0;
-    font-size: 30px;
+    padding: 0 10px; /* Add padding to prevent text overflow */
 }
 
+/* Navbar Adjustments for Mobile */
 .navbar {
-    background-color: white;
-    overflow: hidden;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: bold;
+    position: relative; /* Change to relative for better stacking */
+    margin-top: 20px; /* Reduce margin for smaller screens */
     padding: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-top: 117px;
-    padding-top: 5px;
-    width: 100%;
-    box-sizing: border-box;
-    position: absolute;
-    top: 0px;
-    z-index: 1000;
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the left */
 }
 
 .navbar a {
-    color: #6dc453;
-    text-align: center;
-    padding: 10px 15px;
-    text-decoration: none;
-    margin-left: 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    display: block; /* Stack links vertically */
+    margin: 5px 0; /* Add spacing between links */
+    padding: 10px;
+    text-align: left; /* Align text to the left */
 }
 
-.navbar a:hover {
-    background: #ffd000;
-    color: #fff;
-    border-radius: 40px;
-    font-weight: bold;
-}
-
-.navbar a:last-child {
-    margin-right: 10px;
-}
-
-.loader {
-    border: 5px solid #f3f3f3; /* Light grey */
-    border-top: 5px solid #3498db; /* Blue */
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    display: none; /* Hidden by default */
-}
-
-@keyframes spin {
-    0% { transform: translate(-50%, -50%) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-.back-btn {
-    background-color: #333;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
-    text-decoration: none;
-    margin-right: 10px;
-}
-
-.back-btn:hover {
-    background-color: #555;
-}
-
-.logout-btn {
-    background-color: #f00;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
-    text-decoration: none;
-}
-
-.logout-btn:hover {
-    background-color: #f22;
-}
-
-/* Hover effect */
-tbody tr:hover {
-background-color: #f0f0f0;
-transition: background-color 0.3s ease;
-}
-/* Animation on row entry */
-@keyframes fadeInRow {
-from {
-opacity: 0;
-transform: translateY(-10px);
-}
-to {
-opacity: 1;
-transform: translateY(0);
-}
-}
-
-.fadeInRow {
-animation: fadeInRow 0.5s ease-in-out;
-}
-/* Animation on row entry */
-@keyframes fadeInRow {
-from {
-opacity: 0;
-transform: translateY(-10px);
-}
-to {
-opacity: 1;
-transform: translateY(0);
-}
-}
-
-.fadeInRow {
-animation: fadeInRow 0.5s ease-in-out;
-}
-/* Table styling */
-table {
-width: 100%;
-border-collapse: collapse;
-margin-top: 20px;
-box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-border-radius: 10px;
-}
-
-.table-container {
-width: 100%;
-overflow-x: auto; /* Enable horizontal scroll */
-margin-top: 20px; /* Adjust spacing */
-}
-
-th, td {
-padding: 12px;
-text-align: left;
-border-bottom: 1px solid #ddd;
-}
-
-th {
-background-color: #f0f0f0;
-font-weight: bold;
-}
-
-td {
-background-color: #fff;
-}
-
-.editing input, .editing textarea {
-width: 100%;
-box-sizing: border-box;
-}
-
-.strike-through {
-text-decoration: line-through;
-color: #999;
-}
-
-/* Alternating row colors for better readability */
-tbody tr:nth-child(even) {
-background-color: #f9f9f9;
-}
-/* Button styles */
-/* Button styles */
-button {
-padding: 8px 16px;
-font-size: 14px;
-background-color: #5cb85c;
-color: white;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-transition: background-color 0.3s ease;
-}
-
-button.edit, button.delete {
-margin-right: 8px; /* Add space between Edit and Delete buttons */
-}
-
-button:hover {
-background-color: #4cae4c;
-}
-
-/* Different styles for delete button */
-button.delete {
-background-color: #d9534f;
-}
-
-button.delete:hover {
-background-color: #c9302c;
-}
-
-/* Container styling */
-
+/* Container Adjustments for Mobile */
 .container {
-width: 80%;
-margin: auto;
-overflow: hidden;
-padding: 10px;
-background: #fff;
-box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-margin-top: 14%;
-border-radius: 10px;
-animation: fadeIn 1s ease-in-out;
+    width: 95%; /* Increase width for smaller screens */
+    margin: 20px auto; /* Reduce top margin */
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 20px; /* Reduce top margin */
 }
 
-h1, h2 {
-text-align: center;
-}
-
-/* Form container */
+/* Form Adjustments for Mobile */
 .form-container {
-max-width: 600px;
-margin: 20px auto;
-padding: 20px;
-background: #fff;
-border-radius: 8px;
-box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    max-width: 100%; /* Full width on small screens */
+    padding: 15px; /* Reduce padding */
 }
 
-/* Form styles */
 form {
-display: grid;
-gap: 10px;
-}
-
-label {
-font-weight: bold;
+    display: flex;
+    flex-direction: column; /* Stack form elements vertically */
+    gap: 10px;
 }
 
 input[type="date"],
 select,
 textarea {
-width: 100%;
-padding: 10px;
-font-size: 16px;
-border: 1px solid #ddd;
-border-radius: 5px;
-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-transition: border-color 0.3s ease-in-out;
-}
-
-input[type="date"]:focus,
-select:focus,
-textarea:focus {
-outline: none;
-border-color: #007bff;
+    width: 100%; /* Full width for inputs */
+    padding: 8px; /* Reduce padding */
+    font-size: 14px; /* Reduce font size */
 }
 
 button[type="submit"] {
-background-color: #007bff;
-color: white;
-border: none;
-padding: 12px 20px;
-font-size: 16px;
-border-radius: 5px;
-cursor: pointer;
-transition: background-color 0.3s ease-in-out;
+    width: 100%; /* Full width for submit button */
+    padding: 10px; /* Reduce padding */
+    font-size: 14px; /* Reduce font size */
 }
 
-button[type="submit"]:hover {
-background-color: #0056b3;
+/* Table Adjustments for Mobile */
+.table-container {
+    overflow-x: auto; /* Enable horizontal scrolling for tables */
+    margin-top: 10px; /* Reduce margin */
 }
 
-/* Styling the logout button */
+table {
+    width: 100%; /* Full width for tables */
+    font-size: 14px; /* Reduce font size */
+}
+
+th, td {
+    padding: 8px; /* Reduce padding */
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* Button Adjustments for Mobile */
+button {
+    padding: 8px 12px; /* Reduce padding */
+    font-size: 14px; /* Reduce font size */
+}
+
+button.edit, button.delete {
+    margin: 5px 0; /* Add spacing between buttons */
+}
+
+/* Logout Button Adjustments */
 #logoutButton {
-float: right;
-background-color: #f44336;
-color: white;
-padding: 10px 20px;
-border: none;
-cursor: pointer;
-font-size: 16px;
+    width: 100%; /* Full width for logout button */
+    margin: 10px 0; /* Add spacing */
+    padding: 10px; /* Reduce padding */
+    font-size: 14px; /* Reduce font size */
 }
 
-#logoutButton:hover {
-background-color: #d32f2f;
+/* Media Queries for Specific Screen Sizes */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 20px; /* Further reduce font size for smaller screens */
+    }
+
+    .navbar {
+        padding: 5px; /* Reduce padding */
+    }
+
+    .container {
+        margin-top: 10px; /* Reduce top margin */
+    }
+
+    .form-container {
+        padding: 10px; /* Reduce padding */
+    }
+
+    input[type="date"],
+    select,
+    textarea {
+        font-size: 12px; /* Further reduce font size */
+    }
+
+    button[type="submit"] {
+        font-size: 12px; /* Further reduce font size */
+    }
+
+    table {
+        font-size: 12px; /* Further reduce font size */
+    }
+
+    th, td {
+        padding: 6px; /* Further reduce padding */
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 18px; /* Smallest font size for very small screens */
+    }
+
+    .navbar a {
+        padding: 8px; /* Reduce padding */
+    }
+
+    .container {
+        width: 100%; /* Full width for very small screens */
+        margin-top: 5px; /* Reduce top margin */
+    }
+
+    .form-container {
+        padding: 5px; /* Reduce padding */
+    }
+
+    input[type="date"],
+    select,
+    textarea {
+        font-size: 10px; /* Smallest font size */
+    }
+
+    button[type="submit"] {
+        font-size: 10px; /* Smallest font size */
+    }
+
+    table {
+        font-size: 10px; /* Smallest font size */
+    }
+
+    th, td {
+        padding: 4px; /* Smallest padding */
+    }
 }
