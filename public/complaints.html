@@ -220,7 +220,6 @@
             moveToResolvedComplaints(row, id, date, complaintType, complaint, attemptedBy, attemptedDate, remarks);
         }
 
-        
         function cancelEdit(row, date, complaintType, complaint, attemptedBy, attemptedDate, remarks) {
             row.innerHTML = `
                 <td></td>
@@ -244,16 +243,36 @@
         }
 
         async function deleteComplaint(row, id) {
+            // Ask for confirmation before deleting
+            const isConfirmed = confirm('Are you sure you want to delete this complaint?');
+
+            if (!isConfirmed) {
+                return; // Exit the function if the user cancels
+            }
+
+            const loader = document.getElementById('loader');
+            loader.style.display = 'block'; // Show loader
+
             try {
-                const response = await fetch(`/api/complaints/${id}`, { method: 'DELETE' });
+                const response = await fetch(`/api/complaints/${id}`, {
+                    method: 'DELETE'
+                });
+
                 if (!response.ok) {
                     throw new Error('Failed to delete complaint');
                 }
+
+                // Remove the row from the table
                 row.remove();
                 updateSerialNumbers('#complaintsTable');
+
+                // Optionally provide user feedback
+                alert('Complaint deleted successfully!');
             } catch (error) {
                 console.error('Error deleting complaint:', error);
-                // Handle error (e.g., display an error message to the user)
+                alert('Failed to delete complaint. Please try again later.');
+            } finally {
+                loader.style.display = 'none'; // Hide loader
             }
         }
         
