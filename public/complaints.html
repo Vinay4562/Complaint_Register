@@ -10,6 +10,8 @@
 </head>
 <body>
 
+    <div id="loader" class="loader"></div>
+
     <!-- Header -->
     <div class="header">
         <img src="logo_new.png" alt="Logo" class="logo" width="180px" height="160px">
@@ -97,6 +99,9 @@
         }
 
         async function fetchComplaints() {
+            const loader = document.getElementById('loader');
+            loader.style.display = 'block'; // Show loader
+
             try {
                 const response = await fetch('/api/complaints');
                 const complaints = await response.json();
@@ -109,6 +114,9 @@
                 });
             } catch (error) {
                 console.error('Error fetching complaints:', error);
+                alert('Failed to fetch complaints. Please try again later.');
+            } finally {
+                loader.style.display = 'none'; // Hide loader
             }
         }
 
@@ -213,12 +221,12 @@
         }
 
         
-        function cancelEdit(row, date, complaint, attemptedBy, attemptedDate, remarks) {
+        function cancelEdit(row, date, complaintType, complaint, attemptedBy, attemptedDate, remarks) {
             row.innerHTML = `
                 <td></td>
                 <td>${date}</td>
-                <td>${complaint}</td>
-                <td>${complaintType}</td>
+                <td>${complaintType}</td> <!-- Corrected -->
+                <td>${complaint}</td> <!-- Corrected -->
                 <td>${attemptedBy}</td>
                 <td>${attemptedDate}</td>
                 <td>${remarks}</td>
@@ -227,14 +235,14 @@
                     <button class="delete">Delete</button>
                 </td>
             `;
-        
+
             row.classList.remove('editing');
             updateSerialNumbers('#complaintsTable');
-        
+
             row.querySelector('.edit').addEventListener('click', () => editComplaint(row, id));
             row.querySelector('.delete').addEventListener('click', () => deleteComplaint(row, id));
         }
-        
+
         async function deleteComplaint(row, id) {
             try {
                 const response = await fetch(`/api/complaints/${id}`, { method: 'DELETE' });
@@ -273,21 +281,26 @@
         }
 
         
-        document.getElementById('complaintForm').addEventListener('submit', async function(event) {
+        document.getElementById('complaintForm').addEventListener('submit', async function (event) {
             event.preventDefault();
+
+            const loader = document.getElementById('loader');
+            loader.style.display = 'block'; // Show loader
 
             const date = document.getElementById('date').value;
             const complaint = document.getElementById('complaint').value;
             const complaintType = document.getElementById('complaintType').value;
 
+            // Client-side validation
             if (complaintType === 'None') {
                 alert('Please select Complaint Type as "Electrical" or "System".');
+                loader.style.display = 'none'; // Hide loader
                 return;
             }
 
-            // Client-side validation
             if (!date || !complaint || !complaintType) {
                 alert('Please fill in all fields.');
+                loader.style.display = 'none'; // Hide loader
                 return;
             }
 
@@ -305,17 +318,18 @@
                 }
 
                 const newComplaint = await response.json();
-                addComplaintToTable(newComplaint, complaintType); // Pass complaintType to update correct table
+                addComplaintToTable(newComplaint); // Add the new complaint to the table
 
                 // Reset form fields
                 document.getElementById('complaintForm').reset();
 
-                // Optionally provide user feedback (e.g., success message)
+                // Provide user feedback
                 alert('Complaint added successfully!');
             } catch (error) {
                 console.error('Error adding complaint:', error);
-                // Handle error (e.g., display an error message to the user)
                 alert('Failed to add complaint. Please try again later.');
+            } finally {
+                loader.style.display = 'none'; // Hide loader
             }
         });
 
