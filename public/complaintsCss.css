@@ -1,47 +1,103 @@
-/* General Mobile-Friendly Adjustments */
-body {
-    font-size: 16px; /* Base font size for readability */
-    line-height: 1.5; /* Improve readability on small screens */
-}
 
-/* Header Adjustments for Mobile */
 .header {
-    position: relative; /* Change to relative for better stacking */
-    padding: 20px 0; /* Reduce padding for smaller screens */
+    background-color: white;
+    color: red;
+    text-decoration: underline 2px;
+    padding: 40px 0;
     text-align: center;
     margin-bottom: 0;
     width: 100%;
     box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    z-index: 1000;
 }
 
 .header img {
-    position: static; /* Remove absolute positioning */
-    display: block; /* Center the logo */
-    margin: 0 auto 10px; /* Add margin for spacing */
-    width: 100px; /* Reduce logo size for mobile */
-    height: auto; /* Maintain aspect ratio */
+    position: absolute;
+    top: 15px;
+    left: 25px;
+    width: 120px;
+    height: 100px;
 }
 
 .header h1 {
-    font-size: 24px; /* Reduce font size for smaller screens */
     margin: 0;
-    padding: 0 10px; /* Add padding to prevent text overflow */
+    font-size: 30px;
 }
 
-/* Navbar Adjustments for Mobile */
 .navbar {
-    position: relative; /* Change to relative for better stacking */
-    margin-top: 20px; /* Reduce margin for smaller screens */
+    background-color: white;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
     padding: 10px;
-    flex-direction: column; /* Stack items vertically */
-    align-items: flex-start; /* Align items to the left */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 117px;
+    padding-top: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0px;
+    z-index: 1000;
 }
 
 .navbar a {
-    display: block; /* Stack links vertically */
-    margin: 5px 0; /* Add spacing between links */
-    padding: 10px;
-    text-align: left; /* Align text to the left */
+    color: #6dc453;
+    text-align: center;
+    padding: 10px 15px;
+    text-decoration: none;
+    margin-left: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.navbar a:hover {
+    background: #ffd000;
+    color: #fff;
+    border-radius: 40px;
+    font-weight: bold;
+}
+
+.navbar a:last-child {
+    margin-right: 10px;
+}
+
+.loader {
+    border: 5px solid #f3f3f3; /* Light grey */
+    border-top: 5px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    display: none; /* Hidden by default */
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Styling the logout button */
+#logoutButton {
+    float: right;
+    background-color: #f44336;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+    
+#logoutButton:hover {
+    background-color: #d32f2f;
 }
 
 /* Container Adjustments for Mobile */
@@ -80,38 +136,98 @@ button[type="submit"] {
     font-size: 14px; /* Reduce font size */
 }
 
-/* Table Adjustments for Mobile */
-.table-container {
-    overflow-x: auto; /* Enable horizontal scrolling for tables */
-    margin-top: 10px; /* Reduce margin */
-}
-
+/* Table Styling */
 table {
-    width: 100%; /* Full width for tables */
-    font-size: 14px; /* Reduce font size */
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden; /* Ensure rounded corners are visible */
 }
 
-th, td {
-    padding: 8px; /* Reduce padding */
-    white-space: nowrap; /* Prevent text wrapping */
+/* Table Header */
+th {
+    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient background */
+    color: white;
+    font-weight: bold;
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid #444; /* Darker border for contrast */
 }
 
-/* Button Adjustments for Mobile */
-button {
-    padding: 8px 12px; /* Reduce padding */
-    font-size: 14px; /* Reduce font size */
+/* Table Rows */
+td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    background-color: #f9f9f9; /* Light background for rows */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
 }
 
-button.edit, button.delete {
-    margin: 5px 0; /* Add spacing between buttons */
+/* Alternating Row Colors */
+tbody tr:nth-child(even) {
+    background-color: #e3f2fd; /* Light blue for even rows */
 }
 
-/* Logout Button Adjustments */
-#logoutButton {
-    width: 100%; /* Full width for logout button */
-    margin: 10px 0; /* Add spacing */
-    padding: 10px; /* Reduce padding */
-    font-size: 14px; /* Reduce font size */
+tbody tr:nth-child(odd) {
+    background-color: #fff3e0; /* Light orange for odd rows */
+}
+
+/* Hover Effect on Rows */
+tbody tr:hover {
+    background-color: #ffcc80; /* Bright orange on hover */
+    transition: background-color 0.3s ease;
+}
+
+/* Action Buttons in Table */
+button.edit {
+    background-color: #4caf50; /* Green for edit button */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.edit:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+button.delete {
+    background-color: #f44336; /* Red for delete button */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.delete:hover {
+    background-color: #e53935; /* Darker red on hover */
+}
+
+/* Table Container */
+.table-container {
+    width: 100%;
+    overflow-x: auto; /* Enable horizontal scroll for small screens */
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    th, td {
+        padding: 8px; /* Reduce padding for smaller screens */
+    }
+
+    button.edit, button.delete {
+        padding: 6px 10px; /* Smaller buttons for mobile */
+        font-size: 12px; /* Smaller font size for mobile */
+    }
 }
 
 /* Media Queries for Specific Screen Sizes */
