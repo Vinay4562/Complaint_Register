@@ -39,11 +39,21 @@ const UserSchema = new mongoose.Schema({
 });
 const User = mongoose.model('User', UserSchema);
 
+// Load default credentials from .env
+const defaultUsername = process.env.DEFAULT_USERNAME;
+const defaultPassword = process.env.DEFAULT_PASSWORD;
+
+// Validate credentials are loaded
+if (!defaultUsername || !defaultPassword) {
+    console.error('Error: DEFAULT_USERNAME or DEFAULT_PASSWORD not set in .env');
+    process.exit(1);
+}
+
 // Authentication Routes
 app.post('/api/login', async (req, res) => {
     const { username, password } = req.body;
     // Default credentials for demonstration purposes
-    if (username === 'Shankarpally400kv' && password === 'Shankarpally@9870') {
+    if (username === defaultUsername && password === defaultPassword) {
         req.session.user = { username };
         return res.status(200).send('Login successful');
     }
